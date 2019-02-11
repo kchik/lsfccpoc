@@ -30,6 +30,12 @@ sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap ${rc_account}*rc_account]
 echo "update LSF_LOCAL_RESOURCES lsf.conf successfully, add [resourcemap ${rc_account}*rc_account]" >> $logfile
 fi
 
+# Update LIM PORT
+sed -i "s/LSF_LIM_PORT=7869/LSF_LIM_PORT=9867/g" $LSF_CONF_FILE
+if [ $? == 0 ]; then
+echo "Update LSF_PORT to 9867" >> $logfile
+fi
+
 #
 # Run lsreghost command to register the host to LSF master if no DNS update
 #
